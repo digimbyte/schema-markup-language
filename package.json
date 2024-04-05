@@ -1,0 +1,25 @@
+{
+  "name": "schema-markup-language",
+  "displayName": "Schema Markup Language",
+  "description": "a modular Markup Language for data tables with forced typings and schema reliant inputs",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.88.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "sml",
+      "aliases": ["Schema Markup Language", "sml"],
+      "extensions": [".sml"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "sml",
+      "scopeName": "definitions.sml",
+      "path": "./syntaxes/sml.tmLanguage.json"
+    }]
+  }
+}
