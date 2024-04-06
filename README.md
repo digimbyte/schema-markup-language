@@ -38,7 +38,7 @@ Get immediate, clear feedback on errors with messages designed to help you quick
 ## Examples
 
 Schema Definitions:
-```json
+```html
 <Config 
   strings="any(default)"|"strict"|"single"|"double"
   headers="enabled(default)"|"disabled"
@@ -117,7 +117,7 @@ Alternative schema setup consideration
 ```
 
 Table Definitions:
-```json
+```html
 <Schema model=Moves version=1/>
 // comment support
 # header support // headers could act as html anchors
