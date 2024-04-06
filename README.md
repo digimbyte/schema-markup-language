@@ -73,7 +73,7 @@ Schema Definitions:
 </Schema>
 ```
 Alternative schema setup consideration
-```
+```yaml
   Move:
     name: ""
     description: "Defines a game move."
