@@ -1,31 +1,143 @@
 # schema-markup-language README
 
-This is the README for your extension "schema-markup-language". After writing up a brief description, we recommend including the following sections.
+The objective of this open-source project is to create a schema-driven markup language, tentatively named Schema Markup Language (SML), which emphasizes human readability and strict schema enforcement. At the heart of this endeavor is the `schemas.sml` file, a comprehensive schema definition that serves as the foundational reference for all subsequent SML documents. Here's a breakdown of the project's core goals and the structure of schemas.sml:
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+This scheme is currently in planning phase/Development, its intended features is as follows:
 
-For example if there is an image subfolder under your extension project workspace:
+### Syntax Highlighting
 
-\!\[feature X\]\(images/feature-x.png\)
+Enjoy enhanced readability with our syntax highlighting feature, which differentiates elements, attributes, and text for easier editing and reviewing.
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
 
-## Requirements
+### Real-time Schema Validation
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+Ensure your SML documents adhere to the `schemas.sml` standards with real-time validation, highlighting discrepancies as you type.
 
-## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+### Auto-completion and Snippets
 
-For example:
+Take advantage of intelligent auto-completion and snippets that reflect your `schemas.sml`, streamlining the creation of SML documents.
 
-This extension contributes the following settings:
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+### Schema Integration
+
+Customize and Utilize the capabilities of SML by integrating your schemas, offering flexibility across various use cases. Setting a SML definition header, assigns it to a determined schema design.
+
+- enforced unique values
+- enforced number factors
+- enforced string values
+- populate schema templates on new rows
+
+### Informative Error Messages
+
+Get immediate, clear feedback on errors with messages designed to help you quickly find and fix issues.
+
+
+## Examples
+
+Schema Definitions:
+```json
+<Config 
+  strings="any(default)"|"strict"|"single"|"double"
+  headers="enabled(default)"|"disabled"
+  comments="enabled(default)"|"disabled"
+  whitespace="??"
+/>
+
+<Enums>
+  <Elements values=["Fire", "Earth", "Wind", "Water"] default="None"/>
+  <Items values=["Ring", "Cape", "Armor", "Sword", "Boots"] default="None" strict />
+</Enums>
+
+<Schema name="Moves">
+  <name required default="" unique />
+  <element enum="Elements" required />
+  <itemsEnum array required array required unique /> // array of values
+  <itemsObject array required array required key="name"(optional) /> // array of objects
+    <name(required-by-parent) unique string />
+    <level required number default=0 />
+    <element required number default=0 />
+  </items>
+</Schema>
+
+<Schema name="Fighters" unique>
+  <name required default="" typeof=string case=lowercase>
+  <age required default=0 typeof=number factor=5> // if defined, value must be Mod 5 == 0
+  <element enum="Elements" required>
+  <skills required unique(NE) >
+    <level required number default=0 />
+    <element required number default=0 />
+  </items>
+</Schema>
+```
+Alternative schema setup consideration
+```
+  Move:
+    name: ""
+    description: "Defines a game move."
+    attributes:
+      name: {type: string, required: true}
+      type: {type: string, enum: [Light, Dark, Fire, Water], default: Light}
+    elements:
+      Stage:
+        min: 1
+        description: "Stages within the move, e.g., charge and fire."
+        attributes:
+          name: {type: string, required: true}
+          target: {type: string, enum: [self, allEnemies, singleEnemy]}
+        elements:
+          Effect:
+            description: "Effects triggered by this stage."
+            attributes:
+              type: {type: string, required: true}
+              duration: {type: integer, default: 1}
+              condition: {type: string}
+  Move:
+    name: ""
+    description: "Defines a game move."
+    attributes:
+      name: {type: string, required: true}
+      type: {type: string, enum: [Light, Dark, Fire, Water], default: Light}
+    elements:
+      Stage:
+        min: 1
+        description: "Stages within the move, e.g., charge and fire."
+        attributes:
+          name: {type: string, required: true}
+          target: {type: string, enum: [self, allEnemies, singleEnemy]}
+        elements:
+          Effect:
+            description: "Effects triggered by this stage."
+            attributes:
+              type: {type: string, required: true}
+              duration: {type: integer, default: 1}
+              condition: {type: string}
+```
+
+Table Definitions:
+```json
+<Schema model=Moves version=1/>
+// comment support
+# header support // headers could act as html anchors
+<Attack>
+    name = Steven
+    element = "Fire"
+</Attack>
+<Dodge>
+  name="" 
+  element="None"
+  itemsEnum=[""]
+  itemsObject =[
+    <name="" // name required by itemsObject "key"
+      elements=["Fire", "Earth"]
+    />
+    <name="" />
+    <name="" />
+  ] 
+</Dodge>
+```
 
 ## Known Issues
 

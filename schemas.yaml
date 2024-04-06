@@ -1,0 +1,81 @@
+Schemas:
+  Move:
+    name: {type: string, required: true, default: "Unique Name $counter"}
+    description: "Defines a game move."
+    attributes:
+      name: {type: string, required: true}
+      type: {type: string, enum: [Light, Dark, Fire, Water], default: none}
+    elements:
+      Stage:
+        min: 1
+        description: "Stages within the move, e.g., charge and fire."
+        attributes:
+          name: {type: string, required: true}
+          target: {type: string, enum: [self, allEnemies, singleEnemy]}
+        elements:
+          Effect:
+            description: "Effects triggered by this stage."
+            attributes:
+              type: {type: string, required: true}
+              duration: {type: integer, default: 1}
+              condition: {type: string}
+  Nature:
+    name: ""
+    description: "Defines a game move."
+    attributes:
+      name: {type: string, required: true}
+      type: {type: string, enum: [Light, Dark, Fire, Water], default: Light}
+    elements:
+      Stage:
+        min: 1
+        description: "Stages within the move, e.g., charge and fire."
+        attributes:
+          name: {type: string, required: true}
+          target: {type: string, enum: [self, allEnemies, singleEnemy]}
+        elements:
+          Effect:
+            description: "Effects triggered by this stage."
+            attributes:
+              type: {type: string, required: true}
+              duration: {type: integer, default: 1}
+              condition: {type: string}
+  Effect:
+    name: ""
+    description: "Defines a game move."
+    attributes:
+      name: {type: string, required: true}
+      type: {type: string, enum: [Light, Dark, Fire, Water], default: Light}
+    elements:
+      Stage:
+        min: 1
+        description: "Stages within the move, e.g., charge and fire."
+        attributes:
+          name: {type: string, required: true}
+          target: {type: string, enum: [self, allEnemies, singleEnemy]}
+        elements:
+          Effect:
+            description: "Effects triggered by this stage."
+            attributes:
+              type: {type: string, required: true}
+              duration: {type: integer, default: 1}
+              condition: {type: string}
+  Creature:
+    name: ""
+    description: "Defines a game move."
+    attributes:
+      name: {type: string, required: true}
+      type: {type: string, enum: [Light, Dark, Fire, Water], default: Light}
+    elements:
+      Stage:
+        min: 1
+        description: "Stages within the move, e.g., charge and fire."
+        attributes:
+          name: {type: string, required: true}
+          target: {type: string, enum: [self, allEnemies, singleEnemy]}
+        elements:
+          Effect:
+            description: "Effects triggered by this stage."
+            attributes:
+              type: {type: string, required: true}
+              duration: {type: integer, default: 1}
+              condition: {type: string}
