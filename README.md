@@ -72,7 +72,7 @@ Schema Definitions:
   </items>
 </Schema>
 ```
-Alternative schema setup consideration
+Abandoned schema
 ```yaml
   Move:
     name: ""
