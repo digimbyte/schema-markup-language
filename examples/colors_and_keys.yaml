@@ -39,12 +39,23 @@ Definition Validation:
   Schema:
     - multiple: true
     - name: (required) must be unique
+    - unique: (optional) checks the values of this root value name, ensuring each item has a unique name in schema data
   ChildTags:
     - multiple: true
     - name: (required) must be unique to this iteration depth, this is the first string value after initial '<'
     - flags: (optional) unique, required, string, number, boolean, array
     - values: (optional) enum, default, factor
     - comments: (optional) using () to disable values or add comments inline 
+
+Schema Validation:
+  SchemeHeader:
+    about:  defines the schema template to enforce for this file, must match a schema name="value"
+    example: <Schema name="MetaData" />  // not strict on syntax and structure, could be "Schema:MetaData" on line 1
+    error: if schema header is missing, error whole document as invalid
+  content:
+    about: a list of items with child values based on the schema, typically the first tag contains the name reference and can be duplicates or unique based on Schema flag
+
+
 
 Colors:
   Comments:
