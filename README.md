@@ -31,6 +31,7 @@ Customize and Utilize the capabilities of SML by integrating your schemas, offer
 - populate schema templates on new rows
 - commenting with overrides
 - inline tag comments with brackets () 
+- preferencing <> object declaration over {} so its more user friendly/accessible
 
 ### Informative Error Messages
 
@@ -74,49 +75,6 @@ Schema Definitions:
   </items>
 </Schema>
 ```
-Abandoned schema
-```yaml
-  Move:
-    name: ""
-    description: "Defines a game move."
-    attributes:
-      name: {type: string, required: true}
-      type: {type: string, enum: [Light, Dark, Fire, Water], default: Light}
-    elements:
-      Stage:
-        min: 1
-        description: "Stages within the move, e.g., charge and fire."
-        attributes:
-          name: {type: string, required: true}
-          target: {type: string, enum: [self, allEnemies, singleEnemy]}
-        elements:
-          Effect:
-            description: "Effects triggered by this stage."
-            attributes:
-              type: {type: string, required: true}
-              duration: {type: integer, default: 1}
-              condition: {type: string}
-  Move:
-    name: ""
-    description: "Defines a game move."
-    attributes:
-      name: {type: string, required: true}
-      type: {type: string, enum: [Light, Dark, Fire, Water], default: Light}
-    elements:
-      Stage:
-        min: 1
-        description: "Stages within the move, e.g., charge and fire."
-        attributes:
-          name: {type: string, required: true}
-          target: {type: string, enum: [self, allEnemies, singleEnemy]}
-        elements:
-          Effect:
-            description: "Effects triggered by this stage."
-            attributes:
-              type: {type: string, required: true}
-              duration: {type: integer, default: 1}
-              condition: {type: string}
-```
 
 Table Definitions:
 ```html
@@ -132,7 +90,8 @@ Table Definitions:
   element="None"
   itemsEnum=[""]
   itemsObject =[
-    <name="" // name required by itemsObject "key"
+    <
+      name="" // required & must be unique
       elements=["Fire", "Earth"]
     />
     <name="" />
