@@ -1,0 +1,47 @@
+Scheme Definition keywords:
+   Config: Holds all the properties of the extention and its interpretation
+   Enums: a list of all named values that can be used in a schema, allowing predefined auto-completion
+   Schema: a Schema constructor, requires a name property, names must be unique
+   Property Tag: an unnamed tag used to populate the keynames properties of a schema and accepts various flags and values
+   Child Tag: an unnamed tag used to populate the child properties of a schema and accepts various flags and values, can be an array of objects
+
+Tag Properties:
+  Flags:
+    string: defines this key property as a string values
+    number: defines this key property as a number value
+    boolean: defines this key property as a boolean value
+    array: defines this key property as an array value
+    required: defines this key property as a required value, flag schema model if value missing
+    unique: checks the values of this key value, ensuring it is one of a kind
+
+  Values:
+    enum: asigns an enum to this input for auto auto-completion
+    default: assigns a default value to this key regardless of strict flags
+    factor: assigns a factor to this key, requires a number flag and validates the value as MOD this factor
+  
+  Comments: 
+    double slash: // this is a comment
+    inline Tag: (this is a comment)
+
+
+Colors:
+  Comments:
+    double slash: Color double slash comments as Green
+    reset: when using ':' behind a // comment, reset to default color (Green)
+    warning: when using ! behind a // comment, change its color to Yellow
+    error: when using !! behind a // comment, change its color to Red
+    info: when using ? behind a // comment, change its color to Blue
+    inline: inside tags, using () colors the text mid Gray, allowing inline comments
+  enumValue: Magenta
+  requiredFlag: Plum
+  uniqueFlag: purple
+  stringFlag: Blue
+  numberFlag: Teal
+  booleanFlag: Green
+  arrayFlag:
+    color: Yellow
+    Tag: The Array Tag name and line color is also Yellow 
+  ChildTags:
+    about: open tags represent a nested object and accept internal tags, Array flag supercedes this
+    color: Mint
+    Tag: The Tag name and line color is also Mint
