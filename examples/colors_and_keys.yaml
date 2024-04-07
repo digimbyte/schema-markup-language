@@ -53,9 +53,7 @@ Schema Validation:
     example: <Schema name="MetaData" />  // not strict on syntax and structure, could be "Schema:MetaData" on line 1
     error: if schema header is missing, error whole document as invalid
   content:
-    about: a list of items with child values based on the schema, typically the first tag contains the name reference and can be duplicates or unique based on Schema flag
-
-
+    about: a list of items with child values based on the schema, typically the first string after '<' is the name reference and can be duplicates or unique based on Schema flag
 
 Colors:
   Comments:
