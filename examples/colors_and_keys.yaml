@@ -21,7 +21,7 @@ Tag Properties:
   
   Comments: 
     double slash: // this is a comment
-    inline Tag: (this is a comment)
+    inline Tag: <Schema (this is a comment) />
 
 
 Colors:
