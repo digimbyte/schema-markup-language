@@ -29,6 +29,8 @@ Customize and Utilize the capabilities of SML by integrating your schemas, offer
 - enforced number factors
 - enforced string values
 - populate schema templates on new rows
+- commenting with overrides
+- inline tag comments with brackets () 
 
 ### Informative Error Messages
 
