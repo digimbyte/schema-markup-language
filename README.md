@@ -43,14 +43,15 @@ Get immediate, clear feedback on errors with messages designed to help you quick
 Schema Definitions:
 ```html
 <Config 
-  strings="any(default)"|"strict"|"single"|"double"
-  headers="enabled(default)"|"disabled"
-  comments="enabled(default)"|"disabled"
+  strings="any"|"strict"|"single"|"double"
+  headers="enabled"|"disabled"
+  comments="enabled"|"disabled"
   whitespace="??"
 />
 
 <Enums>
-  <Elements values=["Fire", "Earth", "Wind", "Water"] default="None"/>
+  // no strict allows users to create custom values (disable warnings, only intellisense complete
+  <Elements values=["Fire", "Earth", "Wind", "Water"] default="None"/> )
   <Items values=["Ring", "Cape", "Armor", "Sword", "Boots"] default="None" strict />
 </Enums>
 
@@ -66,8 +67,8 @@ Schema Definitions:
 </Schema>
 
 <Schema name="Fighters" unique>
-  <name required default="" typeof=string case=lowercase>
-  <age required default=0 typeof=number factor=5> // if defined, value must be Mod 5 == 0
+  <name required default="" string case=lowercase>
+  <age required default=0 number factor=5> // if defined, value must be Mod 5 == 0
   <element enum="Elements" required>
   <skills required unique(NE) >
     <level required number default=0 />
@@ -81,11 +82,11 @@ Table Definitions:
 <Schema model=Moves version=1/>
 // comment support
 # header support // headers could act as html anchors
-<Attack>
+<Attack
     name = Steven
     element = "Fire"
-</Attack>
-<Dodge>
+/>
+<Dodge
   name="" 
   element="None"
   itemsEnum=[""]
@@ -97,7 +98,7 @@ Table Definitions:
     <name="" />
     <name="" />
   ] 
-</Dodge>
+/>
 ```
 
 ## Known Issues
