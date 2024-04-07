@@ -1,9 +1,9 @@
 Scheme Definition keywords:
-   Config: Holds all the properties of the extention and its interpretation
-   Enums: a list of all named values that can be used in a schema, allowing predefined auto-completion
-   Schema: a Schema constructor, requires a name property, names must be unique
-   Property Tag: an unnamed tag used to populate the keynames properties of a schema and accepts various flags and values
-   Child Tag: an unnamed tag used to populate the child properties of a schema and accepts various flags and values, can be an array of objects
+  Config: Holds all the properties of the extention and its interpretation
+  Enums: a list of all named values that can be used in a schema, allowing predefined auto-completion
+  Schema: a Schema constructor, requires a name property, names must be unique
+  Property Tag: an unnamed tag used to populate the keynames properties of a schema and accepts various flags and values
+  Child Tag: an unnamed tag used to populate the child properties of a schema and accepts various flags and values, can be an array of objects
 
 Tag Properties:
   Flags:
@@ -18,11 +18,33 @@ Tag Properties:
     enum: asigns an enum to this input for auto auto-completion
     default: assigns a default value to this key regardless of strict flags
     factor: assigns a factor to this key, requires a number flag and validates the value as MOD this factor
-  
-  Comments: 
+
+  Comments:
     double slash: // this is a comment
     inline Tag: <Schema (this is a comment) />
 
+Definition Validation:
+  Config:
+    - multiple: false
+    - strings: set the format for strings input, loose to strict, "any" default | "strict" | "single" | "double" | "backtick"
+    - headers: allows header comments in Schemas for anchor links, true | false | "enabled" | "disabled"
+    - comments: allows comments in Schemas, true | false | "enabled" | "disabled"
+    - whitespace: defines auto formatting indentation with a number of spaces, 0-10
+  Enums:
+    - multiple: false
+    - tagName: unique keyname of this enum for reference
+    - values: (required) must be an [] array of values, can be string, number, boolean
+    - default: (optional) assigns a default value to the enum
+    - strict: (optional) sets the enum to strict, only allowing values in the enum (default overrides this)
+  Schema:
+    - multiple: true
+    - name: (required) must be unique
+  ChildTags:
+    - multiple: true
+    - name: (required) must be unique to this iteration depth, this is the first string value after initial '<'
+    - flags: (optional) unique, required, string, number, boolean, array
+    - values: (optional) enum, default, factor
+    - comments: (optional) using () to disable values or add comments inline 
 
 Colors:
   Comments:
@@ -40,7 +62,7 @@ Colors:
   booleanFlag: Green
   arrayFlag:
     color: Yellow
-    Tag: The Array Tag name and line color is also Yellow 
+    Tag: The Array Tag name and line color is also Yellow
   ChildTags:
     about: open tags represent a nested object and accept internal tags, Array flag supercedes this
     color: Mint
